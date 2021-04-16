@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+
+string programa();
+
+int main()
+{
+    string nombreYapellido;
+    nombreYapellido=programa();
+    cout<<nombreYapellido<<endl;
+}
+
+string programa()
+{
+    string nombre;
+    string apellido;
+    cout<<"Ingrese el nombre: ";
+    cin>>nombre;
+    cout<<"Ingrese el apellido: ";
+    cin>>apellido;
+    string concatenar;
+    concatenar=nombre+" "+apellido;
+    return concatenar;
+}
