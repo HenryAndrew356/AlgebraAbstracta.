@@ -1,0 +1,155 @@
+#include <iostream>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+
+char arrayMay[]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+char arrayMin[]={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+
+void cifradoRot13(string &mensajeAencriptar);
+void descifradoRot13(string &mensajeEncriptado);
+
+int main()
+{
+    
+    string mensaje;
+    cout<<"Ingrese el mensaje:"<<endl;
+    getline(cin,mensaje);
+    cifradoRot13(mensaje);
+    cout<<"\n\n\n";
+    cout<<"Mensaje encriptado: "<<endl<<endl;
+    cout<<mensaje<<endl<<endl;
+    descifradoRot13(mensaje);
+    cout<<"\n\n\n";
+    cout<<"EL mensaje desencriptado es : "<<endl<<endl;
+    cout<<mensaje<<endl<<endl;
+    return 0;
+}
+
+
+//  a) Escriba un programa que cifre un mensaje usando rot13.
+void cifradoRot13(string &mensajeAencriptar)
+{
+    int clave{13};
+    int encounter;
+    for(unsigned int pasada1{0};pasada1<mensajeAencriptar.size();pasada1++)
+    {
+        if(isalpha(mensajeAencriptar[pasada1]))
+        {
+            if(isupper(mensajeAencriptar[pasada1]))
+            {
+                for(unsigned int a1{0};a1<26;a1++)
+                {
+                    if(mensajeAencriptar[pasada1]==arrayMay[a1])
+                    {
+                        encounter=a1;
+                        if((clave+encounter)<=25)
+                        {
+                            mensajeAencriptar[pasada1]=arrayMay[clave+encounter];
+                            break;
+                        }
+                        else
+                        {
+                            mensajeAencriptar[pasada1]=arrayMay[((clave+encounter)-26)];
+                            break;
+                        }
+                    }
+                }
+            }
+            if(islower(mensajeAencriptar[pasada1]))
+            {
+                for(unsigned int a2{0};a2<26;a2++)
+                {
+                    if(mensajeAencriptar[pasada1]==arrayMin[a2])
+                    {
+                        encounter=a2;
+                        if((clave+encounter)<=25)
+                        {
+                            mensajeAencriptar[pasada1]=arrayMin[clave+encounter];
+                            break;
+                        }
+                        else
+                        {
+                            mensajeAencriptar[pasada1]=arrayMin[((clave+encounter)-26)];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//  b) Escriba un mensaje que descifre el mensaje codifi cado usando 13 como la clave.
+void descifradoRot13(string &mensajeEncriptado)
+{
+    int clave2;
+    cout<<"Ingresar clave para desencriptar: ";
+    cin>>clave2;
+    int encounter;
+    
+    for(unsigned int pasada1{0};pasada1<mensajeEncriptado.size();pasada1++)
+    {
+        if(isalpha(mensajeEncriptado[pasada1]))
+        {
+            if(isupper(mensajeEncriptado[pasada1]))
+            {
+                for(unsigned int a1{0};a1<26;a1++)
+                {
+                    if(mensajeEncriptado[pasada1]==arrayMay[a1])
+                    {
+                        encounter=a1;
+                        if((encounter-clave2)>=0)
+                        {
+                            mensajeEncriptado[pasada1]=arrayMay[encounter-clave2];
+                            break;
+                        }
+                        else
+                        {
+                            mensajeEncriptado[pasada1]=arrayMay[(26-(clave2-encounter))];
+                            break;
+                        }
+                    }
+                }
+            }
+            if(islower(mensajeEncriptado[pasada1]))
+            {
+                for(unsigned int a2{0};a2<26;a2++)
+                {
+                    if(mensajeEncriptado[pasada1]==arrayMin[a2])
+                    {
+                        encounter=a2;
+                        if((encounter-clave2)>=0)
+                        {
+                            mensajeEncriptado[pasada1]=arrayMin[encounter-clave2];
+                            break;
+                        }
+                        else
+                        {
+                            mensajeEncriptado[pasada1]=arrayMin[(26-(clave2-encounter))];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*
+ C)
+    ¿qué tan difícil cree usted que sería quebrantar el código?
+        En el caso del abecedario español a lo maximo que puede ascender el rot13 es rot25,
+        solo se tendria que probar en cada descifrado que palabras son coherentes en el idioma
+        español, (con una respectiva libreria de palabras en español.)
+
+    ¿Qué pasaría si tuviera acceso a un poder de cómputo considerable 
+    ( por ejemplo, supercomputadoras)?
+        Se podrian realizar calculos de gran dimension y a mayor velocidad, pero si se tiene el código 
+        correcto, no seria muy necesario, aunque a nivel cientifico no estoy seguro.
+
+*/
