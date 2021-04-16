@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+
+void imprimirAlrevez(string palabra);
+
+int main()
+{
+    string palabra{"ornitorrinco"};
+    imprimirAlrevez(palabra);
+}
+
+void imprimirAlrevez(string palabra)
+{
+    for(auto it=palabra.end();it!=(palabra.begin()-1);it--)
+    {
+        cout<<*it;
+    }
+    cout<<endl;
+}
