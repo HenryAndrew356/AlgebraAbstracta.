@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+
+void addAsteriscos(string &palabra);
+
+int main()
+{
+    string palabra{"palabraAleatoria"};
+    addAsteriscos(palabra);
+    cout<<palabra<<endl;
+}
+
+void addAsteriscos(string &palabra)
+{
+    string palabra2;
+    for(unsigned int a{0};a<((palabra.size())/2);a++)
+    {
+        palabra2+=palabra[a];
+    }
+    palabra2+={"******"};
+    int b=(palabra.size())/2;
+    for(;b<palabra.size();b++)
+    {
+        palabra2+=palabra[b];
+    }
+    palabra=palabra2;
+}
