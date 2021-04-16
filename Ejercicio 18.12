@@ -1,0 +1,121 @@
+#include <iostream>
+#include <string>
+
+using std::endl;
+using std::cout;
+using std::cin;
+using std::string;
+
+int intentos{0};
+int aciertos{0};
+bool Fallo;
+char Letra;
+
+void mostrarHumano(int numFallidos);
+void busqueda(char letra,string palabra,string &palabraX);
+
+int main()
+{
+    string palabra{"murcielago"};
+    string palabraX=palabra;
+    for(unsigned int a{0};a<palabra.size();a++)
+    {
+        palabraX[a]='X';
+    }
+    while(intentos<palabra.size())
+    {
+        system("cls");
+        cout<<"Adivine la palabra: ";
+        cout<<palabraX;
+        cout<<endl;
+        cout<<"Ingresa un caracter: ";
+        cin>>Letra;
+        busqueda(Letra,palabra,palabraX);
+        mostrarHumano(intentos);
+        if(aciertos==palabra.size())
+        {
+            cout<<"Felicidades!!! Adivino mi palabra. Desea jugar otra vez?"<<endl;
+            break;
+        }
+        if(intentos==palabra.size())
+        {
+            cout<<"Game Over!!"<<endl;
+            break;
+        }
+    }
+}
+
+void busqueda(char letra,string palabra,string &palabraX)
+{
+    Fallo=true;
+    for(unsigned int a{0};a<palabra.size();a++)
+    {
+        
+        if(palabra[a]=letra)
+        {
+            palabraX[a]=letra;
+            Fallo=false;
+            aciertos++;
+        }
+    }
+    if(Fallo)
+    {
+        intentos++;
+    }
+}
+
+void mostrarHumano(int numFallidos)
+{
+    switch (numFallidos)
+    {
+    case 1:
+    {
+        cout<<endl;
+        cout<<endl;
+        cout<<endl;
+        cout<<"/"<<endl;
+    }
+    case 2:
+    {
+        cout<<endl;
+        cout<<endl;
+        cout<<endl;
+        cout<<"/ \\"<<endl;
+    }
+    case 3:
+    {
+        cout<<endl;
+        cout<<endl;
+        cout<<" |"<<endl;
+        cout<<"/ \\"<<endl;
+    }
+    case 4:
+    {
+        cout<<"  "<<endl;
+        cout<<" |"<<endl;
+        cout<<" |"<<endl;
+        cout<<"/ \\"<<endl;
+    }
+    case 5:
+    {
+        cout<<"  "<<endl;
+        cout<<"/| "<<endl;
+        cout<<" |"<<endl;
+        cout<<"/ \\"<<endl;
+    }
+    case 6:
+    {
+        cout<<"  "<<endl;
+        cout<<"/|\\"<<endl;
+        cout<<" |"<<endl;
+        cout<<"/ \\"<<endl;
+    }
+    case 7:
+    {
+        cout<<" O"<<endl;
+        cout<<"/|\\"<<endl;
+        cout<<" |"<<endl;
+        cout<<"/ \\"<<endl;
+    }
+    }
+}
