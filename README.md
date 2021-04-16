@@ -1,1 +1,1 @@
-# AlgebraAbstracta.
+# AlgebraAbstracta / Laboratorio String
