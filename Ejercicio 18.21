@@ -1,0 +1,22 @@
+#include <iostream>
+#include <cstring>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+
+
+int main()
+{
+    char palabra[]="palabra1.palabra2.palabra3";
+    char delim[]=".";
+    char *token=strtok(palabra,delim);
+    while(token)
+    {
+        cout<<token<<" ";
+        token=strtok(NULL,delim);
+    }
+    return 0;
+}
